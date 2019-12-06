@@ -1,20 +1,36 @@
-#!/usr/bin/sudo /usr/bin/python
+#!/usr/bin/python3
 
+from flask import request
+from flask_api import FlaskAPI
 import RPi.GPIO as GPIO
 import time
 
-pin = 18
-
+bell = 18
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(pin, GPIO.OUT)
-GPIO.output(pin, GPIO.LOW)
+GPIO.setup(bell, GPIO.OUT)
 
-time.sleep(1)
+app = FlaskAPI(__name__)
 
-GPIO.output(pin, GPIO.HIGH)
+@app.route('/', methods=["GET"])
+def api_root():
+    return {
+           "bell": request.url + "bell/",
+      		 "led_url_POST": {"action": "(ring)"}
+    			 }
+  
+@app.route('/bell/', methods=["GET", "POST"])
+def api_leds_control():
+    if request.method == "POST":
+        if request.data.get("action") == "ring":
+            GPIO.output(bell, 1)
+            time.sleep(0.2)
+            GPIO.output(bell, 0)
+            time.sleep(0.5)
+            GPIO.output(bell, 1)
+            time.sleep(0.2)
+            GPIO.output(bell, 0)
+    return "test" 
 
-time.sleep(1)
-
-GPIO.output(pin, GPIO.LOW)
-
-GPIO.cleanup()
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
+    GPIO.cleanup()
