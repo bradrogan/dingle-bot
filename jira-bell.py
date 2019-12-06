@@ -1,9 +1,20 @@
+#!/usr/bin/sudo /usr/bin/python
+
 import RPi.GPIO as GPIO
+import time
 
-# Set pin 12 to output
-GPIO.setup(12,GPIO.OUT)
-# Set pin 12 to LOW (off) by default
-GPIO.output(12,0)
+pin = 18
 
-# Change the state of pin 12 from off to on (0 to 1)
-GPIO.output(12,1)
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(pin, GPIO.OUT)
+GPIO.output(pin, GPIO.LOW)
+
+time.sleep(1)
+
+GPIO.output(pin, GPIO.HIGH)
+
+time.sleep(1)
+
+GPIO.output(pin, GPIO.LOW)
+
+GPIO.cleanup()
