@@ -35,13 +35,14 @@ def api_leds_control(key):
     if check_pass(key):
         if request.method == "POST":
             GPIO.output(bell, 1)
-            time.sleep(0.2)
+            time.sleep(0.04)
             GPIO.output(bell, 0)
-            time.sleep(0.5)
+            time.sleep(0.2)
             GPIO.output(bell, 1)
-            time.sleep(0.2)
+            time.sleep(0.04)
             GPIO.output(bell, 0)
-        return {"error": "Only POST supported"}
+        else:
+            return {"error": "Only POST supported"}
     return {"error": "Not Authorized" }
 
 def cleanup():
