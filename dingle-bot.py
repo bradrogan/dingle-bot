@@ -7,7 +7,7 @@ import time
 import hashlib
 import atexit
 
-HASH = "93e62131edd94907ce1aa0da0a2a5b96"
+HASH = "Add_your_own_hash_here_see_readme"
         
 
 bell = 18
