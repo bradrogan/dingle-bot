@@ -7,7 +7,7 @@ import time
 import hashlib
 import atexit
 
-HASH = "Add_your_own_hash_here_see_readme"
+HASH = "Insert your own hash here - see README"
         
 
 bell = 18
@@ -43,7 +43,9 @@ def api_leds_control(key):
             GPIO.output(bell, 0)
         else:
             return {"error": "Only POST supported"}
-    return {"error": "Not Authorized" }
+    else:
+        return {"error": "Not Authorized" }
+    return {"status": "success" }
 
 def cleanup():
     print("Running GPIO.cleanuop()")
