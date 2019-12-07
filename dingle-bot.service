@@ -1,0 +1,15 @@
+[Unit]
+Description=Startup ngrok and dingle-bot
+After=network.target
+
+[Service]
+ExecStart=/home/pi/apps/dingle-bot/startup-dingle-bot.sh
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+IgnoreSIGPIPE=true
+Restart=always
+RestartSec=3
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
