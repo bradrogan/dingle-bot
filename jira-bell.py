@@ -12,8 +12,7 @@ auth = HTTPBasicAuth()
 
 @auth.verify_password
 def verify_password(username, password):
-    print("Password: ",password, "User: ",username)
-    if username == "brad":
+    if username == "PKSD":
         h = hashlib.md5(password.encode())
         return h.hexdigest() == "8d673af8e528a362f742a93c43aea153"
     return False
