@@ -5,6 +5,7 @@ from flask_api import FlaskAPI
 import RPi.GPIO as GPIO
 import time
 import hashlib
+import atexit
 
 HASH = "93e62131edd94907ce1aa0da0a2a5b96"
         
@@ -43,6 +44,13 @@ def api_leds_control(key):
         return {"error": "Only POST supported"}
     return {"error": "Not Authorized" }
 
+def cleanup():
+    print("Running GPIO.cleanuop()")
+    GPIO.cleanup()
+
 if __name__ == "__main__":
+    atexit.register(cleanup)
     app.run(host='0.0.0.0')
     GPIO.cleanup()
+
+
