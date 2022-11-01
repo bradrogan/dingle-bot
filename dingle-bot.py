@@ -30,7 +30,7 @@ def api_root(key):
     			 }
     return {"error": "Not Authorized" }
   
-@app.route('/bell/<key>', methods=["GET", "POST"])
+@app.route('/bell/<key>', methods=["POST"])
 def api_leds_control(key):
     if check_pass(key):
         if request.method == "POST":
