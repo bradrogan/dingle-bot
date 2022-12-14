@@ -1,5 +1,7 @@
 # dingle-bot
 
+A silly thing to ring a Raspberry Pi controlled cowbell every time a webhook is called (for example, from Jira).
+
 ## Install
 
 For everything to work it's assumed this repo resides in `/home/pi/apps/dingle-bot/`. If it isn't, you'll need to edit the `*.service
